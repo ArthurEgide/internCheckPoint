@@ -44,7 +44,9 @@ public class App {
         CSVParser parser = CSVParser.parse(raw, Charset.forName("UTF-8"), CSVFormat.DEFAULT);
         List<CSVRecord> lines = parser.getRecords();
         for (CSVRecord c : lines) {
-          wds.add(new WorkDay(c.get(0),c.get(1), c.get(2)));
+          if(c != lines.get(0)){
+            wds.add(new WorkDay(c.get(0),c.get(1), c.get(2)));
+          }
         }
   
       }catch(IOException e){
@@ -53,14 +55,16 @@ public class App {
         e.printStackTrace();
       }
 
-      wds.remove(0);
       return wds;
     }
   public static void main( String[] args )
   {
     ArrayList<WorkDay> wds = readHours();
     for(WorkDay w : wds){
+      System.out.println(w.getBalance());
       System.out.println(w);
     }
+
+
   }
 }
