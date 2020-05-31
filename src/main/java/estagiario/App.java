@@ -18,12 +18,16 @@ public class App {
   public static void main( String[] args )
   {
     welcome();
-    User user = new User();
-
-    user.startWork();
     Manager manager = new Manager("Path_Alternative_File");
-    manager.addWorkDay(user.workinDay);
-    manager.writer();
+    User user = new User(manager);
+
+    if(user.begin()){
+      manager.addWorkDay(user.workinDay);
+      manager.writer();
+    }else{
+      manager.writer();
+    }
+
     
     user.close();
 
