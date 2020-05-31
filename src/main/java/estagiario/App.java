@@ -45,7 +45,12 @@ public class App {
         List<CSVRecord> lines = parser.getRecords();
         for (CSVRecord c : lines) {
           if(c != lines.get(0)){
-            wds.add(new WorkDay(c.get(0),c.get(1), c.get(2)));
+            try{
+              wds.add(new WorkDay(c.get(0),c.get(1), c.get(2), c.get(3)));
+            }catch(ArrayIndexOutOfBoundsException e){
+              System.out.println("Dia sem comentário");
+              wds.add(new WorkDay(c.get(0),c.get(1), c.get(2), ""));
+            }
           }
         }
   
