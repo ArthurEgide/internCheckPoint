@@ -63,6 +63,10 @@ public class WorkDay {
     return this.hourFormat.format(this.out);
   }
 
+  public void setOut(String o){
+    this.out = stringToDate(this.dateFormat.format(this.in), o);
+  }
+
   String getNote(){
     if(this.note != "" ) return this.note;
     return "Sem observacoes ";
@@ -76,7 +80,11 @@ public class WorkDay {
   public String toString(){
     String str = "=-=-=-=-=-=-=-=-=-=\n";
     str += "Entrada : " + this.in + "\n";
-    str += "Saida   : " + this.out + "\n\n";
+    if(this.in.equals(this.out)){
+      str += "Saida   : \n\n";
+    }else{
+      str += "Saida   : " + this.out + "\n\n";
+    }
     return str;
   }
 }
