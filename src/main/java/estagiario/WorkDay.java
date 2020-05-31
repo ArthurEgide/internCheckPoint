@@ -28,15 +28,20 @@ public class WorkDay {
       Date date = (Date)fullDateFormat.parse(String.format("%s %s", d , h));
       return date;
     }catch(Exception e){
-      e.printStackTrace();
-      Scanner sc = new Scanner(System.in);
-      System.out.println("Escreva a data desejada com a seguinte formatacao:  ");
-      System.out.println("=-=-=- dd/MM/yyyy HH:mm");
-      System.out.println("=EX:=- 01/01/2020 09:01\n");
-      System.out.println("");
-      String data = sc.nextLine();
-      sc.close();
-      return stringToDate(data);
+      if(this.in != null && h == ""){
+        System.out.println("Hora da saida ainda não informada");
+        return this.in;
+      }else{
+
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Escreva a data desejada com a seguinte formatacao:  ");
+        System.out.println("=-=-=- dd/MM/yyyy HH:mm");
+        System.out.println("=EX:=- 01/01/2020 09:01\n");
+        System.out.println("");
+        String data = sc.nextLine();
+        sc.close();
+        return stringToDate(data);
+      }
     }
   }
 
