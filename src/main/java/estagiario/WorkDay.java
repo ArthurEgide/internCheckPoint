@@ -7,6 +7,10 @@ import java.util.Scanner;
 public class WorkDay {
   Date in, out;
   String note;
+  private SimpleDateFormat fullDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+  private SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+  private SimpleDateFormat hourFormat = new SimpleDateFormat("HH:mm");
+
 
   WorkDay(String d, String i, String o, String n){
     this.in  = stringToDate(d, i);
@@ -20,8 +24,8 @@ public class WorkDay {
   Date stringToDate(String d, String h){
     try{
 
-      SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-      Date date = (Date)formatter.parse(String.format("%s %s", d , h));
+      
+      Date date = (Date)fullDateFormat.parse(String.format("%s %s", d , h));
       return date;
     }catch(Exception e){
       e.printStackTrace();
@@ -40,6 +44,27 @@ public class WorkDay {
     long secs = ((this.out.getTime() - this.in.getTime()) / 1000) > 0 ? (this.out.getTime() - this.in.getTime()) / 1000 : (this.in.getTime() - this.out.getTime()) / 1000;
     double mins = secs / 60.00;
     return mins;
+  }
+
+  String getDay(){
+    return this.dateFormat.format(this.in);
+  }
+  
+  String getIn(){
+    return this.hourFormat.format(this.in);
+  }
+  
+  String getOut(){
+    return this.hourFormat.format(this.out);
+  }
+
+  String getNote(){
+    if(this.note != "" ) return this.note;
+    return "Sem observacoes ";
+  }
+
+  public String[] exportDay(){
+    return new String[]{this.getDay(), this.getIn(), this.getOut(), String.valueOf(this.getBalance()), this.getNote()};
   }
 
   @Override
