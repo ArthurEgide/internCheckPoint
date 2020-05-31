@@ -8,6 +8,7 @@ import java.util.Date;
 public class User {
   Scanner sc = new Scanner(System.in);
   WorkDay workinDay;
+  Manager manager;
   private SimpleDateFormat fullDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
   private SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
   private SimpleDateFormat hourFormat = new SimpleDateFormat("HH:mm");
@@ -39,8 +40,38 @@ public class User {
     System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
   }
 
+  public void stopWork(){
+    System.out.println("Stopping work");
+    for( WorkDay wd : this.manager.wds ){
+      if(wd.getIn().equals(wd.getOut())){
+        System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+        System.out.println("Falta informação sobre este dia.");
+        System.out.println(wd);
+        System.out.println("Qual horario terminou de trabalhar? [hh:mm]");
+        System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n");
+        wd.setOut(getInput());
+      }
+    }
+  }
+
+  public boolean begin(){
+    System.out.println("Registrar entrada? [s/n]");
+    
+    if(getInput().toLowerCase().equals("s")){
+      this.startWork();
+      return true;
+    }else{
+      this.stopWork();
+      return false;
+    }
+  }
+
   private String getInput(){
     System.out.print("Digite agora: ");
     return this.sc.nextLine();
+  }
+
+  User(Manager mn){
+    this.manager = mn;
   }
 }
