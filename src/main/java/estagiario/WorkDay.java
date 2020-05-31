@@ -8,24 +8,27 @@ public class WorkDay {
   Date in, out;
   String note;
 
-  WorkDay(String i, String o, String n){
-    this.in  = stringToDate(i);
-    this.out = stringToDate(o);
+  WorkDay(String d, String i, String o, String n){
+    this.in  = stringToDate(d, i);
+    this.out = stringToDate(d, o);
     this.note = n;
   }
-
+  
   Date stringToDate(String d){
+    return stringToDate(d.split(" ")[0], d.split(" ")[1]);
+  }
+  Date stringToDate(String d, String h){
     try{
 
-      SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
-      Date date = (Date)formatter.parse(d);
+      SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+      Date date = (Date)formatter.parse(String.format("%s %s", d , h));
       return date;
     }catch(Exception e){
       e.printStackTrace();
       Scanner sc = new Scanner(System.in);
       System.out.println("Escreva a data desejada com a seguinte formatacao:  ");
-      System.out.println("=-=-=- HH:mm:ss");
-      System.out.println("=EX:=- 09:01:00\n");
+      System.out.println("=-=-=- dd/MM/yyyy HH:mm");
+      System.out.println("=EX:=- 01/01/2020 09:01\n");
       System.out.println("");
       String data = sc.nextLine();
       sc.close();
