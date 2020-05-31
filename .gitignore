@@ -1,0 +1,5 @@
+target/classes/estagiario/*.class
+.vscode/launch.json
+target/test-classes/estagiario/AppTest.class
+target/classes/estagiario/App.class
+target/surefire-reports/TEST-estagiario.AppTest.xml
