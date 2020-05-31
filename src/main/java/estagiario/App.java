@@ -1,7 +1,7 @@
 package estagiario;
 
 public class App {
-    
+  
   static void welcome(){
     System.out.println("############ Muito bem vindo ao ponto do estagiário ############");
     System.out.println("# O programa ainda está em desenvolvimento");
@@ -18,9 +18,15 @@ public class App {
   public static void main( String[] args )
   {
     welcome();
+    User user = new User();
+
+    user.startWork();
     Manager manager = new Manager("Path_Alternative_File");
-    WorkDay w1 = new WorkDay("10/12/2010", "13:00", "20:54", "Estava testando a paciencia da PO");
-    manager.addWorkDay(w1);
+    manager.addWorkDay(user.workinDay);
     manager.writer();
+    
+    user.close();
+
+
   }
 }
