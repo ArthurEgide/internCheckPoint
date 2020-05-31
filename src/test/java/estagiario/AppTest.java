@@ -10,10 +10,10 @@ import org.junit.Test;
  */
 public class AppTest 
 {
-  WorkDay w1 = new WorkDay("09:00:00", "10:00:00", "test_case");
-  WorkDay w2 = new WorkDay("09:05:30", "12:07:30", "test_case");
-  WorkDay w3 = new WorkDay("09:00:00", "06:20:00", "test_case");
-  WorkDay w4 = new WorkDay("09:00:00", "21:00:00", "test_case");
+  WorkDay w1 = new WorkDay("01/01/2020", "09:00", "10:00", "test_case");
+  WorkDay w2 = new WorkDay("02/01/2020", "09:05", "12:07", "test_case");
+  WorkDay w3 = new WorkDay("03/01/2020", "09:00", "06:20", "test_case");
+  WorkDay w4 = new WorkDay("04/01/2020", "09:00", "21:00", "test_case");
   
   @Test
   public void shouldPerfectHour(){
